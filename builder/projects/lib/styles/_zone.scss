@@ -1,0 +1,88 @@
+@import "_mixins";
+
+/* default zone styles */
+.uib-zone {
+  position: relative;
+
+  /* box-model */
+  /* visual */
+  border-radius: 4px;
+
+  &:not([selected]) {
+    outline: 1px dashed lightsteelblue;
+  }
+
+  /* elements text are not selectable */
+  &,
+  * {
+    user-select: none;
+  }
+
+  /* elements within zone are clickable */
+  &,
+  .cursor-default {
+    cursor: pointer;
+  }
+
+  /* edited styles */
+  &.edited,
+  .edited {
+    @include edited;
+  }
+
+  /* highlight styles sync with tree */
+  &.highlight,
+  .uib-dropzone-content.highlight,
+  .highlight:not(.uib-dropzone-content) {
+    outline: 2px solid red;
+    z-index: 99;
+  }
+
+  .uib-container {
+    display: flex;
+    min-width: 32px;
+    min-height: 32px;
+  }
+
+
+  /* when hovering a zone or a zone's element */
+  &:hover {
+    outline: 1px dashed lightsteelblue;
+    // margin: var(--margin);
+
+    [uib-configurable] {
+      /* box-model */
+
+      /* visual */
+      border-radius: 2px;
+
+      &:not(.uib-container, .highlight, .dndDragging, .uib-dropzone-content) {
+        outline: 1px dashed yellowgreen;
+        outline-offset: -3px;
+      }
+
+      /* Deactivate clicks within templates in edit mode */
+      & > *:not(.uib-dropzone) {
+        pointer-events: none;
+      }
+    }
+
+    .uib-dropzone-content {
+      outline: 1px dashed steelblue;
+    }
+
+    /* highlight styles */
+    &.highlight,
+    .uib-dropzone-content.highlight {
+      outline: 2px solid red;
+      z-index: 99;
+    }
+  }
+}
+
+/* while dragging remove outline and add a slight border */
+[uib-configurable].dndDragging {
+  background-color: lightgray;
+  outline: none !important;
+  border: 1px solid gray !important;
+}

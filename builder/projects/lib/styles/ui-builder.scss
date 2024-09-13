@@ -1,0 +1,41 @@
+:root {
+  --padding: 0;
+  --margin: 0;
+  --menu-top: -18px;
+  --menu-left: 0px;
+}
+
+/* bootstrap encapsulated inside "uib-bootstrap" namespace */
+@import "_uib-bootstrap";
+
+uib-toolbar {
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  z-index: 1046; // just above the configurator
+}
+
+/* zone's styles */
+@import "_zone";
+
+.uib-dropzone {
+  display: flex;
+  flex-grow: 1;
+}
+
+[uib-configurable] {
+  min-height: 8px;
+  min-width: 8px;
+}
+
+.dragPlaceholder {
+  @include white-stripes;
+  outline: 2px dashed orange;
+
+	flex-grow: 1;
+
+  min-height: 16px;
+  min-width: 16px;
+
+  z-index: 99;
+}
