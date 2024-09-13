@@ -1,5 +1,5 @@
 import { Injectable, Type } from "@angular/core";
-import { SideBarComponent } from "../components/editor/side-bar/side-bar.component";
+import { SideBarComponent } from "../components/editor/generic/side-bar/side-bar.component";
 
 
 

@@ -1,0 +1,14 @@
+<ng-container *ngIf="data">
+
+  <p>css classes</p>
+  <input type="text" [(ngModel)]="data.classes" placeholder="Type here"
+         class="input input-bordered input-primary w-full max-w-xs" />
+  <p>style</p>
+  <textarea type="text" [(ngModel)]="data.css" placeholder="Type here"
+            class="input input-bordered input-primary w-full max-w-xs"></textarea>
+
+  <hr>
+  <ng-container *ngIf="editorType">
+    <div [appDynamic]="editorType" [props]="{data: data}"></div>
+  </ng-container>
+</ng-container>

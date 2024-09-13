@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { BaseComponentData } from '../../../../models/Data';
 import { DynamicComponent } from '../../dynamic/dynamic.component';
 import { BaseComponent } from '../../base-component';
+import { TextEditorComponent } from './text-editor/text-editor.component';
 
 export interface TextC extends BaseComponentData {
   type: "text";
@@ -17,4 +18,4 @@ export class TextComponent extends BaseComponent<TextC> {
 
 }
 
-DynamicComponent.registerComponent('text', TextComponent)
+DynamicComponent.registerComponent('text', TextComponent, TextEditorComponent)

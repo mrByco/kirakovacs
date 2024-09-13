@@ -1,7 +1,7 @@
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { Component, Input, OnDestroy, OnInit, Type, ViewChild, ViewContainerRef } from '@angular/core';
-import { DynamicDirective } from '../../dynamic/dynamic.directive';
-import { SidebarService } from '../../../services/sidebar-service';
+import { DynamicDirective } from '../../../dynamic/dynamic.directive';
+import { SidebarService } from '../../../../services/sidebar-service';
 
 @Component({
   selector: 'app-side-bar',
