@@ -2,7 +2,6 @@ import { NgModule } from "@angular/core";
 
 import { AutocompleteComponent, CheckboxComponent, ColorPickerComponent, ConditionPipe, ConfigModule, ConfiguratorComponent, ImageSelectorComponent, ItemComponent, MultiSelectComponent, NgModelChangeDebouncedDirective, PaletteComponent, TemplateNameDirective, ToastComponent, ToolbarComponent, TooltipDirective, ZoneComponent } from "./public-api";
 
-
 const components = [
   ConfigModule,
   // standalone components
@@ -21,11 +20,12 @@ const components = [
   // directives
   TemplateNameDirective,
   TooltipDirective,
-  NgModelChangeDebouncedDirective,
+  NgModelChangeDebouncedDirective
+
 ]
 
 @NgModule({
   imports: [...components],
   exports: [...components]
 })
-export class uibModule {}
+export class uibModule { }

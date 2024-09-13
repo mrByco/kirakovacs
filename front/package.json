@@ -9,6 +9,7 @@
     "test": "ng test",
     "serve:ssr:front": "node dist/front/server/server.mjs"
   },
+  "preserveSymlinks": true,
   "private": true,
   "dependencies": {
     "@angular/animations": "^18.2.0",

@@ -3,8 +3,8 @@ import { initialUndoRedoState, undoRedo, UndoRedoState } from "ngrx-wieder";
 import { addConfig, initConfig, removeConfig, setConfig, updateConfig } from "./config.actions";
 import { ComponentConfig } from "./config.model";
 
-interface ConfigState extends UndoRedoState {
-  config: {[id: string]: ComponentConfig};
+export interface ConfigState extends UndoRedoState {
+  config: { [id: string]: ComponentConfig };
 }
 
 const { createUndoRedoReducer } = undoRedo({
@@ -13,40 +13,40 @@ const { createUndoRedoReducer } = undoRedo({
 });
 
 function storeConfig(state: ConfigState, config: ComponentConfig[]) {
-  for(let c of config) {
+  for (let c of config) {
     state.config[c.id] = c;
   }
   return state;
 }
 
 const reducer = createUndoRedoReducer<ConfigState>(
-  {config: {}, ...initialUndoRedoState},
+  { config: {}, ...initialUndoRedoState },
 
-  on(initConfig, (state, {config}) => storeConfig(state, config)),
+  on(initConfig, (state, { config }) => storeConfig(state, config)),
 
-  on(setConfig, (state, {config}) => {
+  on(setConfig, (state, { config }) => {
     // Clear current state
-    for(let key of Object.keys(state)) {
+    for (let key of Object.keys(state)) {
       delete state[key];
     }
     // Add new state
     return storeConfig(state, config);
   }),
 
-  on(addConfig, (state, {config}) => {
-    if(state.config[config.id]) {
+  on(addConfig, (state, { config }) => {
+    if (state.config[config.id]) {
       throw new Error(`Config ${config.id} already exists.`);
     }
     return storeConfig(state, [config]);
   }),
 
-  on(removeConfig, (state, {id}) => {
+  on(removeConfig, (state, { id }) => {
     delete state.config[id];
     return state;
   }),
 
-  on(updateConfig, (state, {config}) => {
-    if(!Array.isArray(config)) config = [config];
+  on(updateConfig, (state, { config }) => {
+    if (!Array.isArray(config)) config = [config];
     return storeConfig(state, config);
   })
 );

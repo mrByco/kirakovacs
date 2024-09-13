@@ -8,6 +8,8 @@ import { AboutPageComponent } from './pages/about-page/about-page.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { TherapiestPageComponent } from './pages/therapiest-page/therapiest-page.component';
+import { uibModule } from 'ngx-ui-builder/dist/lib';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,11 +18,16 @@ import { TherapiestPageComponent } from './pages/therapiest-page/therapiest-page
     AboutPageComponent,
     ContactComponent,
     HomePageComponent,
-    TherapiestPageComponent
+    TherapiestPageComponent,
+
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+
+
+    uibModule
   ],
   providers: [
     provideClientHydration()
