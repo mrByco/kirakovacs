@@ -7,7 +7,11 @@ import { ComponentData } from "../../../models/Data";
 export class EditorDirective {
 
   @Input()
-  protected data: ComponentData | undefined = undefined;
+  public data: ComponentData | undefined = undefined;
 
   constructor() { }
+
+  public getRootData(): ComponentData | undefined {
+    return this.data;
+  }
 }

@@ -16,7 +16,7 @@ export class BaseComponent<T extends ComponentData> {
 
   @HostListener('click', ["$event"])
   onClick($event: MouseEvent) {
-    //$event.stopPropagation()
+    $event.stopPropagation()
     let genericEditor = this.sidebarService.show<GenericComponentEditorComponent<T>>(GenericComponentEditorComponent)
     genericEditor.data = this.data
     if (this.data)

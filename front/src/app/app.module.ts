@@ -29,6 +29,7 @@ import { ContainerEditorComponent } from './components/basic-components/containe
 import { ImageEditorComponent } from './components/basic-components/image/image-editor/image-editor.component';
 import { TextEditorComponent } from './components/basic-components/text/text-editor/text-editor.component';
 import { DndModule } from 'ngx-drag-drop';
+import { EditorDirective } from './components/editor/editor.directive';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -55,7 +56,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     GenericComponentEditorComponent,
     ContainerEditorComponent,
     ImageEditorComponent,
-    TextEditorComponent
+    TextEditorComponent,
+    EditorDirective
   ],
   imports: [
     BrowserModule,

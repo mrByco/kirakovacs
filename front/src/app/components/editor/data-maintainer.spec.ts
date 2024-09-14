@@ -1,9 +1,6 @@
 import { ComponentData } from "../../../models/Data";
 
 import { ExampleData } from "../../../models/ExampleData";
-import { RegisterContainer } from "../basic-components/container/container.type";
-import { RegisterImage } from "../basic-components/image/image.type";
-import { RegisterText } from "../basic-components/text/text.type";
 import { MaintainAllComponentData } from "./data-maintainer";
 
 describe('DataMaintainer', () => {

@@ -4,7 +4,7 @@
   <div style="border: 1px orangered solid; border-radius: 5px; padding: 15px;" dndPlaceholderRef>
     placeholder
   </div>
-  <app-dynamic *ngFor="let item of data?.slot??[]" [data]="item" [dndDraggable]="this.data" [dndEffectAllowed]="'move'"
+  <app-dynamic *ngFor="let item of data?.slot??[]" [data]="item" [dndDraggable]="item" [dndEffectAllowed]="'move'"
                [dndDisableIf]="draggable.disable" (dndStart)="onDragStart($event)"
                (dndCopied)="onDraggableCopied($event)" (dndLinked)="onDraggableLinked($event)"
                (dndMoved)="onDraggableMoved($event)" (dndCanceled)="onDragCanceled($event)"
