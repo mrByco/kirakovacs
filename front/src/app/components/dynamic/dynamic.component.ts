@@ -1,5 +1,7 @@
 import { Component, Input, OnInit, Type } from '@angular/core';
 import { ComponentData } from '../../../models/Data';
+import { DndDropEvent } from 'ngx-drag-drop';
+import { ComponentRegistry } from '../component.registry';
 
 @Component({
   selector: 'app-dynamic',
@@ -7,7 +9,6 @@ import { ComponentData } from '../../../models/Data';
   styleUrl: './dynamic.component.scss'
 })
 export class DynamicComponent {
-  private static componentRegistry: { [key: string]: { component: Type<any>, editor: Type<any> } } = {}
 
   private _data: ComponentData | undefined = undefined;
   public get data(): ComponentData | undefined {
@@ -17,25 +18,15 @@ export class DynamicComponent {
   public set data(value: ComponentData | undefined) {
     this._data = value;
     if (value) {
-      this.componentType = DynamicComponent.componentRegistry[value.type].component
+      this.componentType = ComponentRegistry.getComponentForType(value.type);
     }
   }
   protected componentType: Type<any> | undefined = undefined;
 
-  public static registerComponent(name: string, component: Type<any>, editor: Type<any>) {
-    DynamicComponent.componentRegistry[name] = {
-      component: component,
-      editor: editor
-    }
-  }
 
-  static getComponentForType(type: string): Type<unknown> {
-    return DynamicComponent.componentRegistry[type].component;
-  }
 
-  static getEditorComponentForType(type: string): Type<unknown> {
-    return DynamicComponent.componentRegistry[type].editor;
-  }
+
+
 
 
 }

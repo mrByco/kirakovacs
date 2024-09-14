@@ -28,6 +28,8 @@ import { GenericComponentEditorComponent } from './components/editor/component-e
 import { ContainerEditorComponent } from './components/basic-components/container/container-editor/container-editor.component';
 import { ImageEditorComponent } from './components/basic-components/image/image-editor/image-editor.component';
 import { TextEditorComponent } from './components/basic-components/text/text-editor/text-editor.component';
+import { DndModule } from 'ngx-drag-drop';
+
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -71,6 +73,7 @@ export function HttpLoaderFactory(http: HttpClient) {
       }
     }),
     FontAwesomeModule,
+    DndModule
   ],
   providers: [
     provideClientHydration(),

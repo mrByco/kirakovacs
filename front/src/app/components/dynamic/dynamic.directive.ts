@@ -10,7 +10,6 @@ export class DynamicDirective implements OnInit {
   constructor(public viewContainerRef: ViewContainerRef) { }
 
   ngOnInit(): void {
-    console.log('DynamicDirective', this.componentType)
     if (this.componentType) {
       this.loadComponent(this.componentType)
     }

@@ -1,8 +1,8 @@
 import { SidebarService } from '../services/sidebar-service';
 import { ComponentData } from './../../models/Data';
 import { Directive, HostListener, inject, Input } from "@angular/core";
-import { DynamicComponent } from './dynamic/dynamic.component';
 import { GenericComponentEditorComponent } from './editor/component-editor/generic-component-editor/generic-component-editor.component';
+import { ComponentRegistry } from './component.registry';
 
 @Directive({
 })
@@ -16,11 +16,11 @@ export class BaseComponent<T extends ComponentData> {
 
   @HostListener('click', ["$event"])
   onClick($event: MouseEvent) {
-    $event.stopPropagation()
+    //$event.stopPropagation()
     let genericEditor = this.sidebarService.show<GenericComponentEditorComponent<T>>(GenericComponentEditorComponent)
     genericEditor.data = this.data
     if (this.data)
-      genericEditor.editorType = DynamicComponent.getEditorComponentForType(this.data.type)
+      genericEditor.editorType = ComponentRegistry.getEditorComponentForType(this.data.type)
   }
 
   cssPropertiesToJSON(cssProperties: any) {
@@ -44,12 +44,10 @@ export class BaseComponent<T extends ComponentData> {
   }
 
   protected getStyle(): any {
-    console.log(this.data?.css)
     try {
       return this.cssPropertiesToJSON(this.data?.css || "")
     }
     catch (e) {
-      console.error(e)
       return {}
     }
   }

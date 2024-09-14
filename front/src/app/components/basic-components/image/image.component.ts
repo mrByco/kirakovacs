@@ -3,6 +3,7 @@ import { BaseComponentData } from '../../../../models/Data';
 import { DynamicComponent } from '../../dynamic/dynamic.component';
 import { BaseComponent as BaseComponent } from '../../base-component';
 import { ImageEditorComponent } from './image-editor/image-editor.component';
+import { ComponentRegistry } from '../../component.registry';
 
 export interface ImageC extends BaseComponentData {
   type: "image";
@@ -18,4 +19,7 @@ export class ImageComponent extends BaseComponent<ImageC> {
 
 }
 
-DynamicComponent.registerComponent('image', ImageComponent, ImageEditorComponent)
+ComponentRegistry.registerComponent('image', {
+  component: ImageComponent,
+  editor: ImageEditorComponent
+})

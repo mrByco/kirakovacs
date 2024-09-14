@@ -5,7 +5,8 @@ import { TextC } from "../app/components/basic-components/text/text.component";
 export type ComponentData = TextC | ImageC | ContainerC;
 
 export interface BaseComponentData {
-  id: string;
+  userId: string;
+  path?: string;
   type: string;
   css: string;
   classes: string[];
