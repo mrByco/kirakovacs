@@ -28,7 +28,8 @@ export class ComponentRegistry {
   }
 
   static getChildrenTools(type: string) {
-    return ComponentRegistry.items[type].children;
+
+    return ComponentRegistry.items[type]?.children;
   }
 
 }

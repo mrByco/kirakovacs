@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { BaseEditorComponent } from '../../../base-editor-component';
-import { TextC } from '../text.component';
+import { TextC } from '../text.type';
 
 @Component({
   selector: 'app-text-editor',

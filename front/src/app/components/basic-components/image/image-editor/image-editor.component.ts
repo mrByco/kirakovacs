@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { BaseEditorComponent } from '../../../base-editor-component';
-import { ImageC } from '../image.component';
+import { ImageC } from '../image.type';
 
 @Component({
   selector: 'app-image-editor',

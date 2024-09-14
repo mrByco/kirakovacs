@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { ContainerC } from '../container.component';
 import { BaseEditorComponent } from '../../../base-editor-component';
+import { ContainerC } from '../container.type';
 
 @Component({
   selector: 'app-container-editor',

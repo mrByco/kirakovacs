@@ -1,14 +1,8 @@
 import { Component } from '@angular/core';
-import { BaseComponentData } from '../../../../models/Data';
-import { DynamicComponent } from '../../dynamic/dynamic.component';
 import { BaseComponent } from '../../base-component';
-import { TextEditorComponent } from './text-editor/text-editor.component';
-import { ComponentRegistry } from '../../component.registry';
+import { TextC } from './text.type';
 
-export interface TextC extends BaseComponentData {
-  type: "text";
-  text: string;
-}
+
 
 @Component({
   selector: 'app-text',
@@ -18,10 +12,3 @@ export interface TextC extends BaseComponentData {
 export class TextComponent extends BaseComponent<TextC> {
 
 }
-
-ComponentRegistry.registerComponent('text',
-  {
-    component: TextComponent,
-    editor: TextEditorComponent
-  }
-)

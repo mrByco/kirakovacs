@@ -1,16 +1,9 @@
-import { Component, Input } from '@angular/core';
-import { DynamicComponent } from '../../dynamic/dynamic.component';
-import { BaseComponentData, ComponentData } from '../../../../models/Data';
+import { Component } from '@angular/core';
 import { BaseComponent } from '../../base-component';
-import { GenericComponentEditorComponent } from '../../editor/component-editor/generic-component-editor/generic-component-editor.component';
 import { DndDropEvent } from 'ngx-drag-drop';
-import { ComponentRegistry } from '../../component.registry';
+import { ContainerC } from './container.type';
+import { ComponentData } from '../../../../models/Data';
 
-
-export interface ContainerC extends BaseComponentData {
-  type: "container";
-  slot: ComponentData[]
-}
 
 @Component({
   selector: 'app-container',
@@ -87,24 +80,4 @@ export class ContainerComponent extends BaseComponent<ContainerC> {
   }
 }
 
-function getChildren(self: ComponentData) {
-  if (self.type != 'container') return [];
-  return self.slot;
-}
-
-function fixChildrenPaths(self: ComponentData) {
-  if (self.type != 'container') return;
-  self.slot.forEach((child) => {
-    child.path = [self.path, child.userId].join('.');
-  });
-}
-
-ComponentRegistry.registerComponent('container', {
-  component: ContainerComponent,
-  editor: GenericComponentEditorComponent,
-  children: {
-    getChildren,
-    fixChildrenPaths
-  }
-});
 

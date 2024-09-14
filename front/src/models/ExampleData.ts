@@ -1,5 +1,13 @@
-import { MaintainAllComponentData } from "../app/components/editor/data-maintainer";
+import { RegisterContainer } from "../app/components/basic-components/container/container.type";
+import { RegisterImage } from "../app/components/basic-components/image/image.type";
+import { RegisterText } from "../app/components/basic-components/text/text.type";
 import { ComponentData } from "./Data";
+
+
+RegisterText();
+RegisterContainer();
+RegisterImage();
+
 
 export const ExampleData: ComponentData = {
   userId: "1",
