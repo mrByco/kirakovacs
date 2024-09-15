@@ -4,6 +4,7 @@ import { ComponentData } from "../../models/Data";
 interface ComponentRegistryItem {
   component: Type<any>,
   editor: Type<any>,
+  createNew: () => ComponentData,
   children?: {
     getChildren: (self: ComponentData) => ComponentData[]
     fixChildrenPaths: (self: ComponentData) => void
@@ -30,6 +31,19 @@ export class ComponentRegistry {
   static getChildrenTools(type: string) {
 
     return ComponentRegistry.items[type]?.children;
+  }
+
+  static CreateNewComponentData(type: string) {
+    return ComponentRegistry.items[type].createNew()
+  }
+
+  public static GetToolbarItems() {
+    return Object.keys(ComponentRegistry.items).map((key) => {
+      return {
+        name: key,
+        component: ComponentRegistry.items[key].component
+      }
+    })
   }
 
 }

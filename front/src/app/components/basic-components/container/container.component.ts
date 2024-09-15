@@ -15,7 +15,6 @@ import { MoveComponentData } from '../../editor/manipulations/move-component';
 })
 export class ContainerComponent extends BaseComponent<ContainerC> {
 
-  protected readonly editor = inject(EditorDirective)
 
 
   onDragover(event: DragEvent) {
@@ -26,6 +25,11 @@ export class ContainerComponent extends BaseComponent<ContainerC> {
   onDrop(event: DndDropEvent) {
 
     console.log("dropped", JSON.stringify(event, null, 2));
+    let droppedData = event.data;
+
+    if (typeof droppedData === 'string') {
+      this.editor.createNewComponent(droppedData, this.data?.path!, event.index);
+    }
     if (!this.editor.data || !event.data?.path) {
       return
     }

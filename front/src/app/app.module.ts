@@ -19,7 +19,7 @@ import { SidebarService } from './services/sidebar-service';
 import { SafePipe } from './components/pipes/safe.pipe';
 import { MultiLangPipe } from './components/pipes/multi-lang.pipe';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { IconButtonComponent } from './components/editor/generic/icon-button/icon-button.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -30,6 +30,11 @@ import { ImageEditorComponent } from './components/basic-components/image/image-
 import { TextEditorComponent } from './components/basic-components/text/text-editor/text-editor.component';
 import { DndModule } from 'ngx-drag-drop';
 import { EditorDirective } from './components/editor/editor.directive';
+import { NewElementsComponent } from './components/editor/toolbar/new-elements/new-elements.component';
+import { SaveDataService } from './services/save-data-service';
+import { CookieService } from 'ngx-cookie-service';
+import { DynamicRootComponent } from './components/dynamic-root/dynamic-root.component';
+
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -57,14 +62,15 @@ export function HttpLoaderFactory(http: HttpClient) {
     ContainerEditorComponent,
     ImageEditorComponent,
     TextEditorComponent,
-    EditorDirective
+    EditorDirective,
+    NewElementsComponent,
+    DynamicRootComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
 
-    HttpClientModule,
 
     TranslateModule.forRoot({
       defaultLanguage: 'en',
@@ -80,7 +86,10 @@ export function HttpLoaderFactory(http: HttpClient) {
   providers: [
     provideClientHydration(),
     SidebarService,
-    LanguageService
+    LanguageService,
+    SaveDataService,
+    CookieService,
+    provideHttpClient(withFetch())
   ],
   bootstrap: [AppComponent]
 })

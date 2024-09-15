@@ -1,8 +1,9 @@
-<div class="flex w-full" dndDropzone dndEffectAllowed="all" (dndDragover)="onDragover($event)"
-     (dndDrop)="onDrop($event)">
+<div class="flex w-full h-full border-2" style="min-height: 20px; min-width: 20px;" dndDropzone dndEffectAllowed="all"
+     (dndDragover)="onDragover($event)" (dndDrop)="onDrop($event)">
 
-  <div style="border: 1px orangered solid; border-radius: 5px; padding: 15px;" dndPlaceholderRef>
-    placeholder
+  <div class="" style="border: 1px orangered solid; min-width: 2px; min-height: 2px; border-radius: 5px;"
+       dndPlaceholderRef>
+
   </div>
   <app-dynamic *ngFor="let item of data?.slot??[]" [data]="item" [dndDraggable]="item" [dndEffectAllowed]="'move'"
                [dndDisableIf]="draggable.disable" (dndStart)="onDragStart($event)"

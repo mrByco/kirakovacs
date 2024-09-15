@@ -1,4 +1,4 @@
-import { BaseComponentData } from "../../../../models/Data";
+import { BaseComponentData, getDefaultBaseComponentData } from "../../../../models/Data";
 import { ComponentRegistry } from "../../component.registry";
 import { TextEditorComponent } from "./text-editor/text-editor.component";
 import { TextComponent } from "./text.component";
@@ -13,7 +13,14 @@ export function RegisterText() {
   ComponentRegistry.registerComponent('text',
     {
       component: TextComponent,
-      editor: TextEditorComponent
+      editor: TextEditorComponent,
+      createNew: () => {
+        return {
+          ...getDefaultBaseComponentData(),
+          type: "text",
+          text: "New Text"
+        }
+      }
     }
   )
 }

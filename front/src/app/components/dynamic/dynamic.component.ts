@@ -1,7 +1,8 @@
-import { Component, Input, OnInit, Type } from '@angular/core';
+import { SaveDataService } from './../../services/save-data-service';
+import { Component, inject, Input, OnDestroy, OnInit, PLATFORM_ID, Type } from '@angular/core';
 import { ComponentData } from '../../../models/Data';
-import { DndDropEvent } from 'ngx-drag-drop';
 import { ComponentRegistry } from '../component.registry';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-dynamic',
@@ -14,6 +15,7 @@ export class DynamicComponent {
   public get data(): ComponentData | undefined {
     return this._data;
   }
+
   @Input()
   public set data(value: ComponentData | undefined) {
     this._data = value;
@@ -21,12 +23,8 @@ export class DynamicComponent {
       this.componentType = ComponentRegistry.getComponentForType(value.type);
     }
   }
+
+
   protected componentType: Type<any> | undefined = undefined;
-
-
-
-
-
-
 
 }

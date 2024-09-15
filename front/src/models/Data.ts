@@ -13,7 +13,14 @@ export interface BaseComponentData {
   classes: string[];
 }
 
-
+export function getDefaultBaseComponentData(): BaseComponentData {
+  return {
+    userId: "component",
+    type: "text",
+    css: "",
+    classes: []
+  }
+}
 
 
 

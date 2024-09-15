@@ -3,6 +3,7 @@ import { BaseComponent as BaseComponent } from '../../base-component';
 import { ImageEditorComponent } from './image-editor/image-editor.component';
 import { ComponentRegistry } from '../../component.registry';
 import { ImageC } from './image.type';
+import { getDefaultBaseComponentData } from '../../../../models/Data';
 
 
 
@@ -17,5 +18,12 @@ export class ImageComponent extends BaseComponent<ImageC> {
 
 ComponentRegistry.registerComponent('image', {
   component: ImageComponent,
-  editor: ImageEditorComponent
+  editor: ImageEditorComponent,
+  createNew: () => {
+    return {
+      ...getDefaultBaseComponentData(),
+      type: "image",
+      src: ""
+    }
+  }
 })

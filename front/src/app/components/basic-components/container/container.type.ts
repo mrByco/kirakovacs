@@ -1,4 +1,4 @@
-import { BaseComponentData, ComponentData } from "../../../../models/Data";
+import { BaseComponentData, ComponentData, getDefaultBaseComponentData } from "../../../../models/Data";
 import { ComponentRegistry } from "../../component.registry";
 import { GenericComponentEditorComponent } from "../../editor/component-editor/generic-component-editor/generic-component-editor.component";
 import { ContainerComponent } from "./container.component";
@@ -29,6 +29,13 @@ export function RegisterContainer() {
     children: {
       getChildren,
       fixChildrenPaths
+    },
+    createNew: () => {
+      return {
+        ...getDefaultBaseComponentData(),
+        type: "container",
+        slot: []
+      }
     }
   });
 }

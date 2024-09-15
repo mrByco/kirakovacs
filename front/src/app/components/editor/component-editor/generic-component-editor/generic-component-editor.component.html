@@ -1,4 +1,4 @@
-<ng-container *ngIf="data">
+<div class="flex flex-col h-full m-1" *ngIf="data">
 
   <p>css classes</p>
   <input type="text" [(ngModel)]="data.classes" placeholder="Type here"
@@ -11,4 +11,15 @@
   <ng-container *ngIf="editorType">
     <div [appDynamic]="editorType" [props]="{data: data}"></div>
   </ng-container>
-</ng-container>
+
+  <hr>
+
+  <div class="flex flex-wrap flex-1">
+    <app-new-elements [data]="data"></app-new-elements>
+  </div>
+
+  <div class="flex align-self-end justify-evenly m-1">
+    <button class="btn btn-primary" (click)="saveToLocalStorage()">Save</button>
+    <button class="btn btn-primary" (click)="loadFromLocalStorage()">Load</button>
+  </div>
+</div>

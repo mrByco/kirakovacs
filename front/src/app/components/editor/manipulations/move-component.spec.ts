@@ -17,8 +17,8 @@ describe('DataMaintainer', () => {
     MoveComponentData(data, '1.3', '1');
 
     let dataAny = data as any;
-    dataAny.slot[0].path = '1.3';
-    dataAny.slot[1].path = '1.2';
+    expect(dataAny.slot[0].path).toBe('1.3');
+    expect(dataAny.slot[1].path).toBe('1.2');
   })
 
   it('should move components accross different layers', () => {
@@ -27,6 +27,6 @@ describe('DataMaintainer', () => {
     MoveComponentData(data, '1.5.4', '1', 1);
 
     let dataAny = data as any;
-    dataAny.slot[1].path = '1.4';
+    expect(dataAny.slot[1].path).toBe('1.4');
   })
 });

@@ -1,4 +1,4 @@
-import { BaseComponentData } from "../../../../models/Data";
+import { BaseComponentData, getDefaultBaseComponentData } from "../../../../models/Data";
 import { ComponentRegistry } from "../../component.registry";
 import { ImageEditorComponent } from "./image-editor/image-editor.component";
 import { ImageComponent } from "./image.component";
@@ -11,7 +11,15 @@ export interface ImageC extends BaseComponentData {
 export function RegisterImage() {
   ComponentRegistry.registerComponent('image', {
     component: ImageComponent,
-    editor: ImageEditorComponent
+    editor: ImageEditorComponent,
+    createNew: () => {
+      return {
+        ...getDefaultBaseComponentData(),
+        type: "image",
+        src: "https://via.placeholder.com/300"
+      }
+
+    }
   })
 }
 
