@@ -1,10 +1,8 @@
-import { svgPathData } from './../../../../../node_modules/@fortawesome/free-regular-svg-icons/faAddressBook.d';
-import { Component, Inject, inject } from '@angular/core';
+import { AfterViewInit, Component, DoCheck, ElementRef, Inject, inject, OnChanges, Renderer2, SimpleChanges } from '@angular/core';
 import { BaseComponent } from '../../base-component';
 import { DndDropEvent } from 'ngx-drag-drop';
 import { ContainerC } from './container.type';
-import { ComponentData } from '../../../../models/Data';
-import { EditorDirective } from '../../editor/editor.directive';
+import { getDefault, getMobile } from '../../../../models/Data';
 import { MoveComponentData } from '../../editor/manipulations/move-component';
 
 
@@ -13,10 +11,53 @@ import { MoveComponentData } from '../../editor/manipulations/move-component';
   templateUrl: './container.component.html',
   styleUrl: './container.component.scss'
 })
-export class ContainerComponent extends BaseComponent<ContainerC> {
+export class ContainerComponent extends BaseComponent<ContainerC> implements AfterViewInit, DoCheck {
+  ngDoCheck(): void {
+    this.setStyle();
+  }
+
+  public dynamicStylePath: string = '';
+
+  private setStyle() {
+    this.dynamicStylePath = `styled-container-${this.data?.path?.replaceAll('.', '-')}`;
+
+    try {
+      let style = this.elementRef.nativeElement.querySelector(`[id="style-${this.dynamicStylePath}"]`);
+      if (style) {
+        this.renderer.removeChild(this.elementRef.nativeElement, style);
+      }
+    }
+    catch (e) {
+      // we are on server
+    }
+
+    let style = this.renderer.createElement('style');
+
+    this.renderer.setAttribute(style, 'id', `style-${this.dynamicStylePath}`);
+
+    // Define dynamic CSS rules
+    const dynamicStyles = `
+      .styled-container-${this.data?.path?.replaceAll('.', '-')} {
+        flex-direction: ${getMobile(this.data?.direction)};
+      }
+      @media (min-width: 768px) {
+        .styled-container-${this.data?.path?.replaceAll('.', '-')} {
+          flex-direction: ${getDefault(this.data?.direction)};
+        }
+      }
+    `;
 
 
+    // Inject the styles into the <style> element
+    const text = this.renderer.createText(dynamicStyles);
+    this.renderer.appendChild(style, text);
 
+    // Append the <style> element to the component's view
+    this.renderer.appendChild(this.elementRef.nativeElement, style);
+  }
+
+  ngAfterViewInit(): void {
+  }
 
   onDragover(event: DragEvent) {
 
@@ -86,6 +127,22 @@ export class ContainerComponent extends BaseComponent<ContainerC> {
   onDragCanceled(event: DragEvent) {
 
     //console.log("drag cancelled", JSON.stringify(event, null, 2));
+  }
+
+  getPositioningCss() {
+    let css = '';
+    /*if (this.data?.direction) {
+      css += `flex-direction: ${this.data.direction};`
+    }*/
+
+    if (this.data?.align) {
+      css += `align-items: ${this.data.align};`
+    }
+
+    if (this.data?.justify) {
+      css += `justify-content: ${this.data.justify};`
+    }
+    return css;
   }
 }
 

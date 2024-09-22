@@ -1,4 +1,4 @@
-import { BaseComponentData, ComponentData, getDefaultBaseComponentData } from "../../../../models/Data";
+import { BaseComponentData, ComponentData, getDefaultBaseComponentData, getDefaultResponsiveProp, ResponiveProp as ResponsiveProp } from "../../../../models/Data";
 import { ComponentRegistry } from "../../component.registry";
 import { ContainerEditorComponent } from "./container-editor/container-editor.component";
 import { ContainerComponent } from "./container.component";
@@ -6,7 +6,8 @@ import { ContainerComponent } from "./container.component";
 
 export interface ContainerC extends BaseComponentData {
   type: "container";
-  direction: "row" | "column";
+
+  direction: ResponsiveProp<"row" | "column">;
   align: "stretch" | "start" | "center" | "end";
   justify: "center" | "start" | "end" | "space-between" | "space-around" | "space-evenly" | "stretch";
   slot: ComponentData[]
@@ -37,7 +38,7 @@ export function RegisterContainer() {
       return {
         ...getDefaultBaseComponentData(),
         type: "container",
-        direction: "column",
+        direction: getDefaultResponsiveProp("row"),
         align: "stretch",
         justify: "center",
         slot: []

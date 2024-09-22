@@ -1,25 +1,59 @@
-<div class="flex flex-col h-full m-1" *ngIf="data">
+<div class="flex flex-col h-full m-1" *ngIf="data && editor">
+  <div>{{data.type}}</div>
+  <button class="btn btn-primary" (click)="goToParent()">Go to parent</button>
+  <app-screen-size-selector [(value)]="editor.selectedScreenSize"></app-screen-size-selector>
 
-  <p>css classes</p>
-  <input type="text" [(ngModel)]="data.classes" placeholder="Type here"
-         class="input input-bordered input-primary w-full max-w-xs" />
-  <p>style</p>
-  <textarea type="text" [(ngModel)]="data.css" placeholder="Type here"
-            class="input input-bordered input-primary w-full max-w-xs"></textarea>
-
-  <hr>
   <ng-container *ngIf="editorType">
     <div [appDynamic]="editorType" [props]="{data: data}"></div>
   </ng-container>
 
+
+
+
+  <div class="collapse bg-base-200">
+    <input type="checkbox" [value]="true" />
+    <div class="collapse-title text-xl font-medium">Margin/padding</div>
+    <div class="collapse-content">
+      <div class="flex flex-col flex-1">
+        <app-margin-padding-edit [(value)]="data.margin"></app-margin-padding-edit>
+        <app-margin-padding-edit [(value)]="data.padding"></app-margin-padding-edit>
+      </div>
+    </div>
+  </div>
+
   <hr>
 
-  <div class="flex flex-wrap flex-1">
-    <app-new-elements [data]="data"></app-new-elements>
+  <div class="collapse bg-base-200">
+    <input type="checkbox" [value]="true" />
+    <div class="collapse-title text-xl font-medium">Advanced</div>
+    <div class="collapse-content">
+      <div class="flex flex-col flex-1">
+        <p>css classes</p>
+        <input type="text" [(ngModel)]="data.classes" placeholder="Type here"
+               class="input input-bordered input-primary w-full max-w-xs" />
+        <p>style</p>
+        <textarea type="text" [(ngModel)]="data.css" placeholder="Type here"
+                  class="input input-bordered input-primary w-full max-w-xs"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <button class="btn btn-error" (click)="remove()">Remove component</button>
+
+
+  <hr>
+
+  <div class="collapse bg-base-200">
+    <input type="checkbox" [value]="true" />
+    <div class="collapse-title text-xl font-medium">New elements</div>
+    <div class="collapse-content">
+      <div class="flex flex-wrap flex-1">
+        <app-new-elements [data]="data"></app-new-elements>
+      </div>
+    </div>
   </div>
 
   <div class="flex align-self-end justify-evenly m-1">
     <button class="btn btn-primary" (click)="saveToLocalStorage()">Save</button>
     <button class="btn btn-primary" (click)="loadFromLocalStorage()">Load</button>
   </div>
-</div>

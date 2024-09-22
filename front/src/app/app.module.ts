@@ -1,3 +1,4 @@
+import { ResponsiveDataAccessorDirective } from './components/editor/generic/responsive-data-accessor.directive';
 import { NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
 
@@ -34,6 +35,8 @@ import { NewElementsComponent } from './components/editor/toolbar/new-elements/n
 import { SaveDataService } from './services/save-data-service';
 import { CookieService } from 'ngx-cookie-service';
 import { DynamicRootComponent } from './components/dynamic-root/dynamic-root.component';
+import { MarginPaddingEditComponent } from './components/editor/generic/margin-padding-edit/margin-padding-edit.component';
+import { ScreenSizeSelectorComponent } from './components/editor/screen-size-selector/screen-size-selector.component';
 
 
 
@@ -64,7 +67,10 @@ export function HttpLoaderFactory(http: HttpClient) {
     TextEditorComponent,
     EditorDirective,
     NewElementsComponent,
-    DynamicRootComponent
+    DynamicRootComponent,
+    MarginPaddingEditComponent,
+    ResponsiveDataAccessorDirective,
+    ScreenSizeSelectorComponent
   ],
   imports: [
     BrowserModule,

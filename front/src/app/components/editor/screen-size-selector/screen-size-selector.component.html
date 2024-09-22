@@ -1,0 +1,8 @@
+<div class="join">
+  <button class="btn join-item" [class.btn-neutral]="value == 'default'"
+          (click)="valueChange.emit('default')">Default</button>
+  <button class="btn join-item" [class.btn-neutral]="value == 'tablet'"
+          (click)="valueChange.emit('tablet')">Tablet</button>
+  <button class="btn join-item" [class.btn-neutral]="value == 'mobile'"
+          (click)="valueChange.emit('mobile')">Mobile</button>
+</div>
