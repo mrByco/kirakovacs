@@ -1,11 +1,14 @@
 import { BaseComponentData, ComponentData, getDefaultBaseComponentData } from "../../../../models/Data";
 import { ComponentRegistry } from "../../component.registry";
-import { GenericComponentEditorComponent } from "../../editor/component-editor/generic-component-editor/generic-component-editor.component";
+import { ContainerEditorComponent } from "./container-editor/container-editor.component";
 import { ContainerComponent } from "./container.component";
 
 
 export interface ContainerC extends BaseComponentData {
   type: "container";
+  direction: "row" | "column";
+  align: "stretch" | "start" | "center" | "end";
+  justify: "center" | "start" | "end" | "space-between" | "space-around" | "space-evenly" | "stretch";
   slot: ComponentData[]
 }
 
@@ -25,7 +28,7 @@ function fixChildrenPaths(self: ComponentData) {
 export function RegisterContainer() {
   ComponentRegistry.registerComponent('container', {
     component: ContainerComponent,
-    editor: GenericComponentEditorComponent,
+    editor: ContainerEditorComponent,
     children: {
       getChildren,
       fixChildrenPaths
@@ -34,6 +37,9 @@ export function RegisterContainer() {
       return {
         ...getDefaultBaseComponentData(),
         type: "container",
+        direction: "column",
+        align: "stretch",
+        justify: "center",
         slot: []
       }
     }

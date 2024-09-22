@@ -23,8 +23,10 @@ export class BaseComponent<T extends ComponentData> {
     let genericEditor = this.sidebarService.show<GenericComponentEditorComponent<T>>(GenericComponentEditorComponent)
     genericEditor.data = this.data
     genericEditor.editor = this.editor
-    if (this.data)
+    if (this.data) {
+      console.log(ComponentRegistry.getEditorComponentForType(this.data.type))
       genericEditor.editorType = ComponentRegistry.getEditorComponentForType(this.data.type)
+    }
   }
 
   cssPropertiesToJSON(cssProperties: any) {
@@ -54,5 +56,11 @@ export class BaseComponent<T extends ComponentData> {
     catch (e) {
       return {}
     }
+  }
+
+  protected getStyleString(): string {
+    let json = JSON.stringify(this.getStyle());
+
+    return json.substring(1, json.length - 1).replace(/"/g, "").replace(/,/g, ";");
   }
 }

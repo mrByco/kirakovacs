@@ -13,6 +13,9 @@ export const ExampleData: ComponentData = {
   userId: "1",
   type: "container",
   css: "container",
+  direction: "row",
+  align: "stretch",
+  justify: "center",
   classes: [],
   slot: [
     {
@@ -27,6 +30,9 @@ export const ExampleData: ComponentData = {
       type: "container",
       css: "",
       classes: [],
+      direction: "row",
+      align: "stretch",
+      justify: "center",
       slot: [
         {
           userId: "4",
