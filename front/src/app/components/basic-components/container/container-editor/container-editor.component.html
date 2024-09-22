@@ -1,5 +1,6 @@
+direction
 <div class="flex gap-4">
-  <button class="btn btn-square">
+  <button class="btn btn-square" [class.btn-outline]="data?.direction == 'row'" (click)="data!.direction = 'row'">
     <svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" fit="" height="100%" width="100%"
          preserveAspectRatio="xMidYMid meet" focusable="false">
       <path
@@ -14,7 +15,7 @@
     </svg>
   </button>
 
-  <button class="btn btn-square">
+  <button class="btn btn-square" [class.btn-outline]="data?.direction == 'column'" (click)="data!.direction = 'column'">
     <svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" fit="" height="100%" width="100%"
          preserveAspectRatio="xMidYMid meet" focusable="false">
       <path
@@ -31,9 +32,9 @@
   </button>
 </div>
 
-
+justify
 <div class="flex gap-4">
-  <button class="btn btn-square">
+  <button class="btn btn-square" [class.btn-outline]="data?.justify == 'start'" (click)="data!.justify = 'start'">
     <svg viewBox="0 0 16 16" fit="" height="100%" width="100%" preserveAspectRatio="xMidYMid meet" focusable="false">
       <rect x="2.5" y="4" width="4" height="8" rx="1"></rect>
       <rect x="7" y="4" width="4" height="8" rx="1"></rect>
@@ -42,7 +43,7 @@
     </svg>
   </button>
 
-  <button class="btn btn-square">
+  <button class="btn btn-square" [class.btn-outline]="data?.justify == 'center'" (click)="data!.justify = 'center'">
 
     <svg viewBox="0 0 16 16" fit="" height="100%" width="100%" preserveAspectRatio="xMidYMid meet" focusable="false">
       <rect y="1" width="1.5" height="14" rx=".75" opacity=".7"></rect>
@@ -52,7 +53,7 @@
     </svg>
 
   </button>
-  <button class="btn btn-square">
+  <button class="btn btn-square" [class.btn-outline]="data?.justify == 'end'" (click)="data!.justify = 'end'">
 
     <svg id="sprite-align-x-end" viewBox="0 0 16 16" fit="" height="100%" width="100%"
          preserveAspectRatio="xMidYMid meet" focusable="false">
@@ -63,52 +64,37 @@
     </svg>
 
   </button>
-  <button class="btn btn-square">
 
-    <svg id="sprite-align-x-space-around" viewBox="0 0 16 16" fit="" height="100%" width="100%"
-         preserveAspectRatio="xMidYMid meet" focusable="false">
-      <rect opacity=".7" x="14.5" y="1" width="1.5" height="14" rx=".75"></rect>
-      <rect opacity=".7" y="1" width="1.5" height="14" rx=".75"></rect>
+  <button class="btn btn-square" [class.btn-outline]="data?.justify == 'space-around'"
+          (click)="data!.justify = 'space-around'">
+    <svg viewBox="0 0 16 16" fit="" height="100%" width="100%" preserveAspectRatio="xMidYMid meet" focusable="false">
       <rect x="3" y="4" width="4" height="8" rx="1"></rect>
       <rect x="9" y="4" width="4" height="8" rx="1"></rect>
     </svg>
-
   </button>
-  <button class="btn btn-square">
-    <svg id="sprite-align-x-space-between" viewBox="0 0 16 16" fit="" height="100%" width="100%"
-         preserveAspectRatio="xMidYMid meet" focusable="false">
-      <rect opacity=".7" x="14.5" y="1" width="1.5" height="14" rx=".75"></rect>
-      <rect opacity=".7" y="1" width="1.5" height="14" rx=".75"></rect>
+
+  <button class="btn btn-square" [class.btn-outline]="data?.justify == 'space-between'"
+          (click)="data!.justify = 'space-between'">
+    <svg viewBox="0 0 16 16" fit="" height="100%" width="100%" preserveAspectRatio="xMidYMid meet" focusable="false">
       <rect x="2" y="4" width="4" height="8" rx="1"></rect>
       <rect x="10" y="4" width="4" height="8" rx="1"></rect>
     </svg>
   </button>
 </div>
 
+align
 
 <div class="">
-  <button class="btn btn-square">
-
-    <svg viewBox="0 0 16 16" fit="" height="100%" width="100%" preserveAspectRatio="xMidYMid meet" focusable="false">
-      <rect x="2.5" y="4" width="4" height="8" rx="1"></rect>
-      <rect x="7" y="4" width="4" height="8" rx="1"></rect>
-      <rect opacity=".7" y="1" width="1.5" height="14" rx=".75"></rect>
-      <rect opacity=".7" x="14.5" y="1" width="1.5" height="14" rx=".75"></rect>
-    </svg>
-  </button>
-  <button class="btn btn-square">
+  <button class="btn btn-square" [class.btn-outline]="data?.align == 'start'" (click)="data!.align = 'start'">
     <svg id="sprite-align-y-start" viewBox="0 0 16 16" fit="" height="100%" width="100%"
          preserveAspectRatio="xMidYMid meet" focusable="false">
       <rect x="3" y="3" width="4" height="12" rx="1"></rect>
       <rect x="8" y="3" width="4" height="8" rx="1"></rect>
       <rect opacity=".7" x="1" y=".5" width="14" height="1.5" rx=".75"></rect>
     </svg>
-
   </button>
 
-  <button class="btn btn-square">
-
-
+  <button class="btn btn-square" [class.btn-outline]="data?.align == 'center'" (click)="data!.align = 'center'">
     <svg id="sprite-align-y-center" viewBox="0 0 16 16" fit="" height="100%" width="100%"
          preserveAspectRatio="xMidYMid meet" focusable="false">
       <rect x="4" y="1" width="4" height="14" rx="1"></rect>
@@ -116,9 +102,8 @@
       <rect opacity=".7" x="1" y="7" width="14" height="1.5" rx=".75"></rect>
     </svg>
   </button>
-  <button class="btn btn-square">
 
-
+  <button class="btn btn-square" [class.btn-outline]="data?.align == 'end'" (click)="data!.align = 'end'">
     <svg id="sprite-align-y-end" viewBox="0 0 16 16" fit="" height="100%" width="100%"
          preserveAspectRatio="xMidYMid meet" focusable="false">
       <rect x="4" y="1" width="4" height="12" rx="1"></rect>
@@ -127,29 +112,13 @@
     </svg>
   </button>
 
-  <button class="btn btn-square">
-
-
-
-
+  <button class="btn btn-square" [class.btn-outline]="data?.align == 'stretch'" (click)="data!.align = 'stretch'">
     <svg id="sprite-align-y-stretch" viewBox="0 0 16 16" fit="" height="100%" width="100%"
          preserveAspectRatio="xMidYMid meet" focusable="false">
       <rect x="3.5" y="3" width="4" height="10" rx="1"></rect>
       <rect x="8.5" y="3" width="4" height="10" rx="1"></rect>
       <rect opacity=".7" x="1" y=".5" width="14" height="1.5" rx=".75"></rect>
       <rect opacity=".7" x="1" y="14" width="14" height="1.5" rx=".75"></rect>
-    </svg>
-  </button>
-  <button class="btn btn-square">
-
-
-
-
-    <svg id="sprite-align-y-baseline" viewBox="0 0 16 16" fit="" height="100%" width="100%"
-         preserveAspectRatio="xMidYMid meet" focusable="false">
-      <rect opacity=".7" x="1" y="7" width="14" height="1.5" rx=".75"></rect>
-      <rect x="3.5" y="3" width="4" height="10" rx="1"></rect>
-      <rect x="8.5" y="3" width="4" height="8" rx="1"></rect>
     </svg>
   </button>
 
