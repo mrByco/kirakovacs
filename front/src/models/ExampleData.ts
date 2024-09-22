@@ -13,8 +13,8 @@ export const ExampleData: ComponentData = {
   userId: "1",
   type: "container",
   direction: getDefaultResponsiveProp("row"),
-  align: "stretch",
-  justify: "center",
+  align: getDefaultResponsiveProp("stretch"),
+  justify: getDefaultResponsiveProp("center"),
   classes: [],
   slot: [
     {
@@ -28,8 +28,8 @@ export const ExampleData: ComponentData = {
       type: "container",
       classes: [],
       direction: getDefaultResponsiveProp("column"),
-      align: "stretch",
-      justify: "center",
+      align: getDefaultResponsiveProp("stretch"),
+      justify: getDefaultResponsiveProp("center"),
       slot: [
         {
           userId: "4",

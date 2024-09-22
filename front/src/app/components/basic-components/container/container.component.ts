@@ -39,10 +39,14 @@ export class ContainerComponent extends BaseComponent<ContainerC> implements Aft
     const dynamicStyles = `
       .styled-container-${this.data?.path?.replaceAll('.', '-')} {
         flex-direction: ${getMobile(this.data?.direction)};
+        align-items: ${getMobile(this.data?.align)};
+        justify-content: ${getMobile(this.data?.justify)};
       }
       @media (min-width: 768px) {
         .styled-container-${this.data?.path?.replaceAll('.', '-')} {
           flex-direction: ${getDefault(this.data?.direction)};
+          align-items: ${getDefault(this.data?.align)};
+          justify-content: ${getDefault(this.data?.justify)};
         }
       }
     `;

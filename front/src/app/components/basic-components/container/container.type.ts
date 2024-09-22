@@ -8,8 +8,8 @@ export interface ContainerC extends BaseComponentData {
   type: "container";
 
   direction: ResponsiveProp<"row" | "column">;
-  align: "stretch" | "start" | "center" | "end";
-  justify: "center" | "start" | "end" | "space-between" | "space-around" | "space-evenly" | "stretch";
+  align: ResponsiveProp<"stretch" | "start" | "center" | "end">;
+  justify: ResponsiveProp<"center" | "start" | "end" | "space-between" | "space-around" | "space-evenly" | "stretch">;
   slot: ComponentData[]
 }
 
@@ -39,8 +39,8 @@ export function RegisterContainer() {
         ...getDefaultBaseComponentData(),
         type: "container",
         direction: getDefaultResponsiveProp("row"),
-        align: "stretch",
-        justify: "center",
+        align: getDefaultResponsiveProp('stretch'),
+        justify: getDefaultResponsiveProp('center'),
         slot: []
       }
     }

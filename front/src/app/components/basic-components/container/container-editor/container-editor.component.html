@@ -41,8 +41,9 @@
       </div>
 
       justify
-      <div class="flex gap-4">
-        <button class="btn btn-square" [class.btn-outline]="data?.justify == 'start'" (click)="data!.justify = 'start'">
+      <div class="flex gap-4" appResponsiveDataAccessor #resPropJ="resProp" [data]="data?.justify">
+        <button class="btn btn-square" [class.btn-outline]="resPropJ.value == 'start'"
+                (click)="resPropJ.value= 'start'">
           <svg viewBox="0 0 16 16" fit="" height="100%" width="100%" preserveAspectRatio="xMidYMid meet"
                focusable="false">
             <rect x="2.5" y="4" width="4" height="8" rx="1"></rect>
@@ -52,8 +53,8 @@
           </svg>
         </button>
 
-        <button class="btn btn-square" [class.btn-outline]="data?.justify == 'center'"
-                (click)="data!.justify = 'center'">
+        <button class="btn btn-square" [class.btn-outline]="resPropJ.value == 'center'"
+                (click)="resPropJ.value = 'center'">
 
           <svg viewBox="0 0 16 16" fit="" height="100%" width="100%" preserveAspectRatio="xMidYMid meet"
                focusable="false">
@@ -64,7 +65,7 @@
           </svg>
 
         </button>
-        <button class="btn btn-square" [class.btn-outline]="data?.justify == 'end'" (click)="data!.justify = 'end'">
+        <button class="btn btn-square" [class.btn-outline]="resPropJ.value == 'end'" (click)="resPropJ.value= 'end'">
 
           <svg id="sprite-align-x-end" viewBox="0 0 16 16" fit="" height="100%" width="100%"
                preserveAspectRatio="xMidYMid meet" focusable="false">
@@ -76,8 +77,8 @@
 
         </button>
 
-        <button class="btn btn-square" [class.btn-outline]="data?.justify == 'space-around'"
-                (click)="data!.justify = 'space-around'">
+        <button class="btn btn-square" [class.btn-outline]="resPropJ.value == 'space-around'"
+                (click)="resPropJ.value = 'space-around'">
           <svg viewBox="0 0 16 16" fit="" height="100%" width="100%" preserveAspectRatio="xMidYMid meet"
                focusable="false">
             <rect x="3" y="4" width="4" height="8" rx="1"></rect>
@@ -85,8 +86,8 @@
           </svg>
         </button>
 
-        <button class="btn btn-square" [class.btn-outline]="data?.justify == 'space-between'"
-                (click)="data!.justify = 'space-between'">
+        <button class="btn btn-square" [class.btn-outline]="resPropJ.value == 'space-between'"
+                (click)="resPropJ.value = 'space-between'">
           <svg viewBox="0 0 16 16" fit="" height="100%" width="100%" preserveAspectRatio="xMidYMid meet"
                focusable="false">
             <rect x="2" y="4" width="4" height="8" rx="1"></rect>
@@ -97,8 +98,9 @@
 
       align
 
-      <div class="">
-        <button class="btn btn-square" [class.btn-outline]="data?.align == 'start'" (click)="data!.align = 'start'">
+      <div class="" appResponsiveDataAccessor #resPropA="resProp" [data]="data?.align">
+        <button class="btn btn-square" [class.btn-outline]="resPropA.value == 'start'"
+                (click)="resPropA.value = 'start'">
           <svg id="sprite-align-y-start" viewBox="0 0 16 16" fit="" height="100%" width="100%"
                preserveAspectRatio="xMidYMid meet" focusable="false">
             <rect x="3" y="3" width="4" height="12" rx="1"></rect>
@@ -107,7 +109,8 @@
           </svg>
         </button>
 
-        <button class="btn btn-square" [class.btn-outline]="data?.align == 'center'" (click)="data!.align = 'center'">
+        <button class="btn btn-square" [class.btn-outline]="resPropA.value == 'center'"
+                (click)="resPropA.value = 'center'">
           <svg id="sprite-align-y-center" viewBox="0 0 16 16" fit="" height="100%" width="100%"
                preserveAspectRatio="xMidYMid meet" focusable="false">
             <rect x="4" y="1" width="4" height="14" rx="1"></rect>
@@ -116,7 +119,7 @@
           </svg>
         </button>
 
-        <button class="btn btn-square" [class.btn-outline]="data?.align == 'end'" (click)="data!.align = 'end'">
+        <button class="btn btn-square" [class.btn-outline]="resPropA.value == 'end'" (click)="resPropA.value = 'end'">
           <svg id="sprite-align-y-end" viewBox="0 0 16 16" fit="" height="100%" width="100%"
                preserveAspectRatio="xMidYMid meet" focusable="false">
             <rect x="4" y="1" width="4" height="12" rx="1"></rect>
@@ -125,7 +128,8 @@
           </svg>
         </button>
 
-        <button class="btn btn-square" [class.btn-outline]="data?.align == 'stretch'" (click)="data!.align = 'stretch'">
+        <button class="btn btn-square" [class.btn-outline]="resPropA.value == 'stretch'"
+                (click)="resPropA.value = 'stretch'">
           <svg id="sprite-align-y-stretch" viewBox="0 0 16 16" fit="" height="100%" width="100%"
                preserveAspectRatio="xMidYMid meet" focusable="false">
             <rect x="3.5" y="3" width="4" height="10" rx="1"></rect>
@@ -141,9 +145,9 @@
       <br>
       direction: {{this.data?.direction | json}}
       <br>
-      align: {{this.data?.align}}
+      align: {{this.data?.align | json}}
       <br>
-      justify: {{this.data?.justify}}
+      justify: {{this.data?.justify | json}}
       <br>
     </div>
   </div>
