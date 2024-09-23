@@ -1,4 +1,5 @@
 import { BaseComponentData, getDefaultBaseComponentData } from "../../../../models/Data";
+import { LanguageString } from "../../../../models/LanguageString";
 import { ComponentRegistry } from "../../component.registry";
 import { TextEditorComponent } from "./text-editor/text-editor.component";
 import { TextComponent } from "./text.component";
@@ -6,7 +7,7 @@ import { TextComponent } from "./text.component";
 
 export interface TextC extends BaseComponentData {
   type: "text";
-  text: string;
+  text: LanguageString;
 }
 
 export function RegisterText() {
@@ -18,7 +19,7 @@ export function RegisterText() {
         return {
           ...getDefaultBaseComponentData(),
           type: "text",
-          text: "New Text"
+          text: { hu: 'SampleText' }
         }
       }
     }

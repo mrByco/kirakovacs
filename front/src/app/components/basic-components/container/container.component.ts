@@ -37,13 +37,14 @@ export class ContainerComponent extends BaseComponent<ContainerC> implements Aft
 
     // Define dynamic CSS rules
     const dynamicStyles = `
-      .styled-container-${this.data?.path?.replaceAll('.', '-')} {
+      .${this.dynamicStylePath} {
         flex-direction: ${getMobile(this.data?.direction)};
         align-items: ${getMobile(this.data?.align)};
         justify-content: ${getMobile(this.data?.justify)};
       }
-      @media (min-width: 768px) {
-        .styled-container-${this.data?.path?.replaceAll('.', '-')} {
+
+      @media (min-width: 0px) {
+        .${this.dynamicStylePath} {
           flex-direction: ${getDefault(this.data?.direction)};
           align-items: ${getDefault(this.data?.align)};
           justify-content: ${getDefault(this.data?.justify)};

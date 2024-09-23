@@ -1,0 +1,4 @@
+<select class="select select-bordered select-sm w-full max-w-xs" [(ngModel)]="currentLanguage">
+  <option *ngFor="let langCode of languages" [value]="langCode" [selected]="langCode == this.currentLanguage">
+    {{langCode}}</option>
+</select>

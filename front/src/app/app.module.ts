@@ -37,6 +37,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { DynamicRootComponent } from './components/dynamic-root/dynamic-root.component';
 import { MarginPaddingEditComponent } from './components/editor/generic/margin-padding-edit/margin-padding-edit.component';
 import { ScreenSizeSelectorComponent } from './components/editor/screen-size-selector/screen-size-selector.component';
+import { LanguageSelectorComponent } from './components/not-reusable/special-functional/language-selector/language-selector.component';
 
 
 
@@ -70,7 +71,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     DynamicRootComponent,
     MarginPaddingEditComponent,
     ResponsiveDataAccessorDirective,
-    ScreenSizeSelectorComponent
+    ScreenSizeSelectorComponent,
+    LanguageSelectorComponent
   ],
   imports: [
     BrowserModule,

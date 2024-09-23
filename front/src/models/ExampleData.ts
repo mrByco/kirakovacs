@@ -21,7 +21,7 @@ export const ExampleData: ComponentData = {
       userId: "2",
       type: "text",
       classes: [],
-      text: "Hello, World!"
+      text: { hu: "Hello, World!" }
     },
     {
       userId: "5",
@@ -35,7 +35,7 @@ export const ExampleData: ComponentData = {
           userId: "4",
           type: "text",
           classes: [],
-          text: "Hello, World!"
+          text: { hu: "Hello, World!" }
         },
         {
           userId: "5",

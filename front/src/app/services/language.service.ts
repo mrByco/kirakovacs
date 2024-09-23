@@ -8,6 +8,7 @@ import { isPlatformBrowser } from "@angular/common";
 })
 export class LanguageService {
   static SelectedLanguage: string = "hu";
+  static AvailableLanguages: string[] = ["hu", "en"];
 
   public get currentLanguage(): string {
     return this._currentLanguage;
@@ -26,7 +27,7 @@ export class LanguageService {
   }
 
   public display(languageString?: LanguageString): string {
-    return LanguageService.getLanguageStringValue(languageString, this.currentLanguage);
+    return LanguageService.getLanguageStringValue(languageString, this.currentLanguage) || 'No ' + this.currentLanguage;
   }
 
   public static getLanguageStringValue(langString: LanguageString | null | undefined, langCode: string): string {
