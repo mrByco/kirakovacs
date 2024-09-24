@@ -1,5 +1,5 @@
 import { ResponsiveDataAccessorDirective } from './components/editor/generic/responsive-data-accessor.directive';
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule, PLATFORM_ID, Provider } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -20,7 +20,7 @@ import { SidebarService } from './services/sidebar-service';
 import { SafePipe } from './components/pipes/safe.pipe';
 import { MultiLangPipe } from './components/pipes/multi-lang.pipe';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { HttpClient, HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule, provideHttpClient, withFetch, withInterceptors, withInterceptorsFromDi } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { IconButtonComponent } from './components/editor/generic/icon-button/icon-button.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -38,7 +38,49 @@ import { DynamicRootComponent } from './components/dynamic-root/dynamic-root.com
 import { MarginPaddingEditComponent } from './components/editor/generic/margin-padding-edit/margin-padding-edit.component';
 import { ScreenSizeSelectorComponent } from './components/editor/screen-size-selector/screen-size-selector.component';
 import { LanguageSelectorComponent } from './components/not-reusable/special-functional/language-selector/language-selector.component';
+import { KeycloakAngularModule, KeycloakBearerInterceptor, KeycloakService } from 'keycloak-angular';
+import { isPlatformBrowser } from '@angular/common';
+import { ApiModule } from './api/api.module';
+import { environment } from '../environments/environment';
 
+const ApiUrl = environment.backendUrl
+
+function initializeKeycloak(keycloak: KeycloakService, platformId: any) {
+  return () => {
+    if (isPlatformBrowser(platformId)) {
+      console.log("Keycloak init");
+      return keycloak.init({
+        config: {
+          url: 'https://keycloack.bitberry.tech/',
+          realm: 'kirakovacs.com',
+          clientId: 'angular'
+        },
+        initOptions: {
+          onLoad: 'check-sso',
+          silentCheckSsoRedirectUri:
+            window.location.origin + '/assets/silent-check-sso.html'
+        },
+
+        bearerPrefix: 'Bearer',
+        enableBearerInterceptor: true,
+
+        shouldAddToken: (request) => {
+          const { method, url } = request;
+          console.log(url);
+          return url.startsWith('https://keycloack.bitberry.tech/') || url.startsWith(environment.backendUrl);
+        }
+      });
+    }
+    return Promise.resolve(); // Skip Keycloak initialization on server-side
+  };
+}
+
+
+const KeycloakBearerInterceptorProvider: Provider = {
+  provide: HTTP_INTERCEPTORS,
+  useClass: KeycloakBearerInterceptor,
+  multi: true
+};
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -77,9 +119,11 @@ export function HttpLoaderFactory(http: HttpClient) {
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     FormsModule,
+    KeycloakAngularModule,
 
-
+    ApiModule.forRoot({ rootUrl: ApiUrl }),
     TranslateModule.forRoot({
       defaultLanguage: 'en',
       loader: {
@@ -93,11 +137,18 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   providers: [
     provideClientHydration(),
+    provideHttpClient(withInterceptorsFromDi()),
+    KeycloakBearerInterceptorProvider,
     SidebarService,
     LanguageService,
     SaveDataService,
     CookieService,
-    provideHttpClient(withFetch())
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializeKeycloak,
+      deps: [KeycloakService, PLATFORM_ID],
+      multi: true
+    },
   ],
   bootstrap: [AppComponent]
 })

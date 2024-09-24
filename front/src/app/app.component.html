@@ -8,5 +8,9 @@
     </div>
     <p>Footer place</p>
   </div>
+  <div *ngFor="let forcast of this.weather">
+    {{forcast.summary}}
+
+  </div>
   <app-side-bar style="z-index: 50" side="right" #sidebar></app-side-bar>
 </div>
